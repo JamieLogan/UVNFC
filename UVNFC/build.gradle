@@ -23,5 +23,6 @@ android {
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:appcompat-v7:+'
+    compile files('build/libs/androidplot-core-0.6.0.jar')
 }
