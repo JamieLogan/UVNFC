@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProgDeviceActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/N:ET:SensorID:Program"
+            android:layout_gravity="left|top"
+            android:hint="Enter the Sensor ID, or Scan QR code"
+            android:textSize="20dp"
+            android:layout_marginTop="66dp"
+            android:layout_toLeftOf="@+id/B:ScanQR:Prog"
+            android:layout_alignParentLeft="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/N:ET:MeasInt"
+            android:layout_gravity="left|top"
+            android:layout_below="@+id/N:ET:SensorID:Program"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="35dp"
+            android:hint="Enter the interval of measurment in min (1min to 2hrs)"
+            android:layout_alignParentRight="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan QR"
+            android:id="@+id/B:ScanQR:Prog"
+            android:layout_gravity="right|top"
+            android:layout_alignBottom="@+id/N:ET:SensorID:Program"
+            android:layout_alignParentRight="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Program sensor"
+            android:id="@+id/B:Send"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/TV:NFCStatus"
+            android:layout_marginTop="38dp"
+            android:layout_below="@+id/B:Send"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:hint="***dev NFC status textview"/>
+    </RelativeLayout>
+
+</FrameLayout>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/UVNFC/UVNFC.iml" filepath="$PROJECT_DIR$/UVNFC/UVNFC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UVNFCProject.iml" filepath="$PROJECT_DIR$/UVNFCProject.iml" />
+    </modules>
+  </component>
+</project>
+

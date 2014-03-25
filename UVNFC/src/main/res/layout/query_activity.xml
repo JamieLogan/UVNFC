@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QueryActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/N:ET:SensorID:Query"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/B:ScanQR:Query"
+            android:hint="Enter sensor ID or scan QR code" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan QR"
+            android:id="@+id/B:ScanQR:Query"
+            android:layout_alignBottom="@+id/N:ET:SensorID:Query"
+            android:layout_alignParentRight="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Measurements"
+            android:id="@+id/B:QueryDB"
+            android:layout_below="@+id/N:ET:SensorID:Query"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="99dp" />
+
+    </RelativeLayout>
+</FrameLayout>
