@@ -27,19 +27,22 @@
             android:layout_height="wrap_content"
             android:text="Program Device"
             android:id="@+id/B:ProgDevice"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:onClick="onClick" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Query Database"
-            android:id="@+id/B:QueryDb" />
+            android:id="@+id/B:QueryDb"
+            android:onClick="onClick" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="OpenCV Placeholder"
-            android:id="@+id/B:OpenCV" />
+            android:id="@+id/B:OpenCV"
+            android:onClick="onClick" />
 
     </LinearLayout>
 </FrameLayout>

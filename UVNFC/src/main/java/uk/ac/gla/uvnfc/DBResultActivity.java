@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-//yehoo
 public class DBResultActivity extends ActionBarActivity {
 
     @Override

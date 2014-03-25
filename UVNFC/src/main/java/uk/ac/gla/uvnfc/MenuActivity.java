@@ -1,20 +1,34 @@
 package uk.ac.gla.uvnfc;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class MenuActivity extends ActionBarActivity {
+
+    public Button prog, querydb, openCV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
+
+
+        /**
+         * Find and declare all our buttons from the UI
+         * RL JL - Tues
+         */
+        prog = (Button) findViewById(R.id.B_ProgDevice);
+        querydb = (Button) findViewById(R.id.B_QueryDb);
+        //opencv = placeholder button ***FFD
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -58,6 +72,23 @@ public class MenuActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
             return rootView;
         }
+    }
+
+
+    /**
+     * OnClick handler, dictates what to do when a button is pressed
+     * RL - Tues
+     */
+    public void onClick (View v){
+        if (v.getId()==R.id.B_ProgDevice){                              //If the button pressed was ProgDevice...
+            Intent intent = new Intent(this, ProgDeviceActivity.class); //Create an intent calling for that activity
+            startActivity(intent);                                      //start an instance of it
+        }
+        if (v.getId()==R.id.B_QueryDb){                                 //If the button pressed was QueryDb...
+            Intent intent = new Intent(this, QueryActivity.class);      //Create an intent calling for that activity
+            startActivity(intent);                                      //start an instance of it
+        }
+        /*openCV is a dummy button FFD*/
     }
 
 }
