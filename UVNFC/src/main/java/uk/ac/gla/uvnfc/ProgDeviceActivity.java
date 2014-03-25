@@ -9,8 +9,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class ProgDeviceActivity extends ActionBarActivity {
+
+    /**
+     * declareing UI elements
+     */
+    public EditText sensorid, measint;
+    public Button send;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +27,11 @@ public class ProgDeviceActivity extends ActionBarActivity {
         setContentView(R.layout.prog_device_activity);
 
         Intent intent = getIntent();
+
+        sensorid =  (EditText)findViewById(R.id.N_ET_SensorID_Program);
+        measint = (EditText)findViewById(R.id.N_ET_MeasInt);
+        send = (Button)findViewById(R.id.B_Send);
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -60,6 +74,14 @@ public class ProgDeviceActivity extends ActionBarActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_prog_device, container, false);
             return rootView;
+        }
+    }
+    
+    public void onClick (View v){
+        if (v.getId()==R.id.B_Send){
+            //grab data from ETs
+            //package NFC
+            //Send NFC
         }
     }
 

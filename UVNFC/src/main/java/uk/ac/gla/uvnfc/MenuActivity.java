@@ -13,6 +13,9 @@ import android.widget.Button;
 
 public class MenuActivity extends ActionBarActivity {
 
+    /**
+     * declareing UI elements
+     */
     public Button prog, querydb, openCV;
 
     @Override
