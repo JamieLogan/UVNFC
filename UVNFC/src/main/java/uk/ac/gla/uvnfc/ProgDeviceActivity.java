@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Calendar;
 
 public class ProgDeviceActivity extends ActionBarActivity {
 
@@ -97,7 +98,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
     }
 
 
-    //Program currently crashes on 
+    //Program currently crashes on
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
 
@@ -166,23 +167,8 @@ public class ProgDeviceActivity extends ActionBarActivity {
         // make application record
         NdefRecord appRecord = NdefRecord.createApplicationRecord("uk.ac.gla.uvnfc");
 
-
-        /*
-        get date and time - to be completed!!!!
-
-
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR)-2000;
-        int day = c.get(Calendar.DAY_OF_YEAR);
-        String date = ""+ year + day;
-
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int min = c.get(Calendar.MINUTE);
-        String time = "" + hour + min;
-        */
-
-
-        String mess = "" + sensor + measint;         // + date + time;     //build message
+        String now = get_time_date();                 //get the current time and date
+        String mess = "" + sensor + now + measint;    //build message
         byte[] payload = mess.getBytes();
         byte[] mimeBytes = MimeType.NFC_DEMO.getBytes(Charset.forName("US-ASCII"));
         NdefRecord cardRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeBytes,
@@ -233,6 +219,32 @@ public class ProgDeviceActivity extends ActionBarActivity {
         }
 
         return false;
+    }
+
+    /**
+     * get time and date and format in to correct string for NDEF message to send over NFC
+     * written by JL
+     * last edited 26/3/14 by JL
+     */
+    String get_time_date(){
+
+        /*get date*/
+        final Calendar c = Calendar.getInstance();         //grab an instance of calendar
+        int year = c.get(Calendar.YEAR)-2000;              //get the year, and subtract 2000
+        byte[] bday = new byte[2];                         //create a 2 byte character array for the day number
+        byte byear= (byte) year;                           //convert int year to a single byte
+        int day = c.get(Calendar.DAY_OF_YEAR);             //get the day of the year
+        bday[0] = (byte)(day & 0XFF);                      //get the LSB of the day int
+        bday[1] = (byte)((day>>8) & 0xFF);                  //get the MSB of the day int
+        String date = "" + byear + bday[1] + bday[0];       //make string with the date in correct format
+
+            /*gate time*/
+        int hour = c.get(Calendar.HOUR_OF_DAY);             //get hour of day from calendar
+        int min = c.get(Calendar.MINUTE);                   //get minute of hour from calendar
+        String time = "" + hour + min;                      //make string with the time in the correct format
+
+        return date +time;
+
     }
 
 

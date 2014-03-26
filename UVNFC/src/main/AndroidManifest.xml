@@ -6,7 +6,7 @@
 
     <!--My code uses minSdk 14 and target 14, RL, Wed -->
     <uses-sdk
-        android:minSdkVersion="7"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
 
