@@ -13,14 +13,15 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="phone"
             android:ems="10"
             android:id="@+id/N:ET:SensorID:Query"
             android:layout_alignParentTop="true"
             android:layout_marginTop="48dp"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/B:ScanQR:Query"
-            android:hint="Enter sensor ID or scan QR code" />
+            android:hint="Enter sensor ID or scan QR code"
+             />
 
         <Button
             style="?android:attr/buttonStyleSmall"

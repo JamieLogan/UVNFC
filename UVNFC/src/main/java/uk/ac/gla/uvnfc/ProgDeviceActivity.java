@@ -76,7 +76,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
             return rootView;
         }
     }
-    
+
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
             //grab data from ETs
