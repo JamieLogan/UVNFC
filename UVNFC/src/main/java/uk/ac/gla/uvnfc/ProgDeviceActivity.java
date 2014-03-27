@@ -111,7 +111,6 @@ public class ProgDeviceActivity extends ActionBarActivity {
     }
 
 
-    //Program currently crashes on
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
 
@@ -129,9 +128,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
 
                 if((measInt>255) | (sensInt>255)){
                     displayMessage("Entered values out of range, please check and try again.");
-                //Declaring as 0 didnt fix the crash here, the problem must be in parseInt'ing an empty string
-                }if((measInt==0) | (sensInt==0)){
-                    displayMessage("Error; Did you enter a value in the boxes above?");
+
 
                 }else{
                     //Tell user to scan tag
