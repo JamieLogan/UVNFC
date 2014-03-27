@@ -98,23 +98,22 @@ public class ProgDeviceActivity extends ActionBarActivity {
     }
 
 
-    //Program currently crashes on
+    //Program currently crashes on -- RL edit 27th: switched enableWrite function call to the last thing
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
 
              //Grab data from EditTexts
              sensString = sensorid.getText().toString();
              measString = measint.getText().toString();
-
-
+            
+             //Tell user to scan tag
+             displayMessage("Touch phone to device to begin write operation ***dev:" + sensString + measString );
+            
             //enable NFC
 
             enableWriteMode();
 
-            //Tell user to scan tag
-            displayMessage("Touch phone to device to begin write operation");
-
-            //Package message --- this stuff should live in on new intent tho....
+            
 
 
         }
@@ -166,7 +165,8 @@ public class ProgDeviceActivity extends ActionBarActivity {
     private boolean writeTag(Tag tag, String sensor, String measint) {
         // make application record
         NdefRecord appRecord = NdefRecord.createApplicationRecord("uk.ac.gla.uvnfc");
-
+        //Added dev Toast RL 27th
+        Toast.makeText(MainActivity.this, "***dev entered writeTag function", Toast.LENGTH_LONG).show();
         String now = get_time_date();                 //get the current time and date
         String mess = "" + sensor + now + measint;    //build message
         byte[] payload = mess.getBytes();
