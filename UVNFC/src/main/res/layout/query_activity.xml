@@ -39,7 +39,8 @@
             android:id="@+id/B:SendQuery"
             android:layout_below="@+id/N:ET:SensorID:Query"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="99dp" />
+            android:layout_marginTop="99dp"
+            android:onClick="onClick" />
 
     </RelativeLayout>
 </FrameLayout>

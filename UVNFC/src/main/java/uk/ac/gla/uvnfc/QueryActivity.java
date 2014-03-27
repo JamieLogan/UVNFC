@@ -9,13 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class QueryActivity extends ActionBarActivity {
+
+    Button send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.query_activity);
+
+        Button send = (Button)findViewById(R.id.B_SendQuery);
 
         Intent intent = getIntent();
 
@@ -61,6 +66,14 @@ public class QueryActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_query, container, false);
             return rootView;
         }
+    }
+
+    public void onClick(View v){
+        if(v.getId()==R.id.B_SendQuery){
+
+        }
+
+
     }
 
 }
