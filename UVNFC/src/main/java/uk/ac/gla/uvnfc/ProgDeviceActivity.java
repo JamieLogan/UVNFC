@@ -115,29 +115,34 @@ public class ProgDeviceActivity extends ActionBarActivity {
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
 
-            //Grab data from EditTexts
-            sensString = sensorid.getText().toString();
-            measString = measint.getText().toString();
+            if((sensorid.length()!=0)&(measint.length()!=0))    //make sure the user has entered something in the fields
+            {
 
+                //Grab data from EditTexts
+                sensString = sensorid.getText().toString();
+                measString = measint.getText().toString();
 
-            sensInt = (Integer.parseInt(sensString));
-            measInt = (Integer.parseInt(measString));
-            sensByte = (byte)(Integer.parseInt(sensString));
-            measByte = (byte)(Integer.parseInt(measString));
+                sensInt = (Integer.parseInt(sensString));
+                measInt = (Integer.parseInt(measString));
+                sensByte = (byte)(Integer.parseInt(sensString));
+                measByte = (byte)(Integer.parseInt(measString));
 
-            if((measInt>255) | (sensInt>255)){
-                displayMessage("Entered values out of range, please check and try again.");
-            //Declaring as 0 didnt fix the crash here, the problem must be in parseInt'ing an empty string
-            }if((measInt==0) | (sensInt==0)){
-                displayMessage("Error; Did you enter a value in the boxes above?");
+                if((measInt>255) | (sensInt>255)){
+                    displayMessage("Entered values out of range, please check and try again.");
+                //Declaring as 0 didnt fix the crash here, the problem must be in parseInt'ing an empty string
+                }if((measInt==0) | (sensInt==0)){
+                    displayMessage("Error; Did you enter a value in the boxes above?");
 
+                }else{
+                    //Tell user to scan tag
+                    displayMessage("Touch phone to device to begin write operation ***dev"+sensString+measString);
+
+                    //enable NFC
+
+                    enableWriteMode();
+                }
             }else{
-                //Tell user to scan tag
-                displayMessage("Touch phone to device to begin write operation ***dev"+sensString+measString);
-
-                //enable NFC
-
-                enableWriteMode();
+                displayMessage("Please make sure you have entered sensor ID and measurment interval");
             }
         }
 
