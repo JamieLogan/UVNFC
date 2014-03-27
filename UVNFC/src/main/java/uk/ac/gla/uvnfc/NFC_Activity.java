@@ -1,30 +1,61 @@
 package uk.ac.gla.uvnfc;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.os.Parcelable;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.TextView;
 
-public class NFC_Activity extends ActionBarActivity {
+public class NFC_Activity extends ActionBarActivity{
+
+    private TextView NFCdisp, NFCstatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_activity);
 
+        /**
+         * This is deleted in RL CardActivity
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        */
+
+
+        NFCdisp = (TextView)findViewById(R.id.TV_NFC_Result);
+        NFCstatus = (TextView)findViewById(R.id.TV_NFCStatus);
+
+            // see if app was started from a tag and show game console
+        Intent intent = getIntent();
+        if(intent.getType() != null && intent.getType().equals(MimeType.NFC_DEMO)) {
+            Parcelable[] rawMsgs = getIntent().getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+            NdefMessage msg = (NdefMessage) rawMsgs[0];
+            NdefRecord deviceRecord = msg.getRecords()[0];
+            String NDEFMSG = new String(deviceRecord.getPayload());
+
+            NFCstatus.setText("Tag has been read! \n\t");
+            NFCdisp.setText(NDEFMSG);
+
+
+        }
+        /*These were used for sending messages across activities, not useful here*/
+        //String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        //rTextView.setText(message);
+
+
     }
 
+
+
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,7 +79,7 @@ public class NFC_Activity extends ActionBarActivity {
 
     /**
      * A placeholder fragment containing a simple view.
-     */
+
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {
@@ -61,5 +92,5 @@ public class NFC_Activity extends ActionBarActivity {
             return rootView;
         }
     }
-
+    */
 }

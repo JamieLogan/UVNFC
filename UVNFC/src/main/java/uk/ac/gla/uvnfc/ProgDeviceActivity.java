@@ -35,7 +35,8 @@ public class ProgDeviceActivity extends ActionBarActivity {
     public Button send;
     public TextView nfcstatus;
     public String sensString, measString;
-    public int sensInt, measInt;
+    public int sensInt=0;
+    public int measInt=0;
     public byte sensByte, measByte;
     /**
      * came from main activity in NFC program
@@ -118,6 +119,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
             sensString = sensorid.getText().toString();
             measString = measint.getText().toString();
 
+
             sensInt = (Integer.parseInt(sensString));
             measInt = (Integer.parseInt(measString));
             sensByte = (byte)(Integer.parseInt(sensString));
@@ -125,6 +127,9 @@ public class ProgDeviceActivity extends ActionBarActivity {
 
             if((measInt>255) | (sensInt>255)){
                 displayMessage("Entered values out of range, please check and try again.");
+            //Declaring as 0 didnt fix the crash here, the problem must be in parseInt'ing an empty string
+            }if((measInt==0) | (sensInt==0)){
+                displayMessage("Error; Did you enter a value in the boxes above?");
 
             }else{
                 //Tell user to scan tag
