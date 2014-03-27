@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Calendar;
 
+
 public class ProgDeviceActivity extends ActionBarActivity {
 
     /**
@@ -34,6 +35,8 @@ public class ProgDeviceActivity extends ActionBarActivity {
     public Button send;
     public TextView nfcstatus;
     public String sensString, measString;
+    public int sensInt, measInt;
+    public byte sensByte, measByte;
     /**
      * came from main activity in NFC program
      */
@@ -115,12 +118,22 @@ public class ProgDeviceActivity extends ActionBarActivity {
             sensString = sensorid.getText().toString();
             measString = measint.getText().toString();
 
-            //Tell user to scan tag
-            displayMessage("Touch phone to device to begin write operation ***dev"+sensString+measString);
+            sensInt = (Integer.parseInt(sensString));
+            measInt = (Integer.parseInt(measString));
+            sensByte = (byte)(Integer.parseInt(sensString));
+            measByte = (byte)(Integer.parseInt(measString));
 
-            //enable NFC
+            if((measInt>255) | (sensInt>255)){
+                displayMessage("Entered values out of range, please check and try again.");
 
-            enableWriteMode();
+            }else{
+                //Tell user to scan tag
+                displayMessage("Touch phone to device to begin write operation ***dev"+sensString+measString);
+
+                //enable NFC
+
+                enableWriteMode();
+            }
         }
 
 
@@ -161,13 +174,13 @@ public class ProgDeviceActivity extends ActionBarActivity {
 
             // write to newly scanned tag
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            writeTag(tag,sensString,measString);
+            writeTag(tag,sensByte,measByte);
         }
     }
 
 
     /**Format tag and write NDEF message*/
-    private boolean writeTag(Tag tag, String sensor, String measint) {
+    private boolean writeTag(Tag tag, byte sensor, byte measint) {
 
         int x;
 
@@ -177,12 +190,10 @@ public class ProgDeviceActivity extends ActionBarActivity {
         //Added for debugging
 
         displayMessage("***Dev: Entered writeTag function");
-        String now = get_time_date();                 //get the current time and date
-        String mess = "" + sensor + now + measint;    //build message
-        byte[] payload = mess.getBytes();
-        for(x=0;x<payload.length; x++){
-            payload[x]-=30;
-        }
+        byte[] payload = get_time_date();                 //get the current time and date
+        payload[0]=sensor;
+        payload[6]=measint;
+
         byte[] mimeBytes = MimeType.NFC_DEMO.getBytes(Charset.forName("US-ASCII"));
         NdefRecord cardRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeBytes,
                 new byte[0], payload);
@@ -239,24 +250,24 @@ public class ProgDeviceActivity extends ActionBarActivity {
      * written by JL
      * last edited 26/3/14 by JL
      */
-    String get_time_date(){
+    byte[] get_time_date(){
+
+        byte[] now = new byte[7];
 
         /*get date*/
         final Calendar c = Calendar.getInstance();         //grab an instance of calendar
-        int year = c.get(Calendar.YEAR)-2000;              //get the year, and subtract 2000
-        byte[] bday = new byte[2];                         //create a 2 byte character array for the day number
-        byte byear= (byte) year;                           //convert int year to a single byte
+        now[1] = (byte)(c.get(Calendar.YEAR)-2000);              //get the year, and subtract 2000
         int day = c.get(Calendar.DAY_OF_YEAR);             //get the day of the year
-        bday[0] = (byte)(day & 0XFF);                      //get the LSB of the day int
-        bday[1] = (byte)((day>>8) & 0xFF);                  //get the MSB of the day int
-        String date = "" + byear + bday[1] + bday[0];       //make string with the date in correct format
+        now[3] = (byte)(day & 0XFF);                      //get the LSB of the day int
+        now[2] = (byte)((day>>8) & 0xFF);                  //get the MSB of the day int
 
-            /*gate time*/
-        int hour = c.get(Calendar.HOUR_OF_DAY);             //get hour of day from calendar
-        int min = c.get(Calendar.MINUTE);                   //get minute of hour from calendar
-        String time = "" + hour + min;                      //make string with the time in the correct format
 
-        return date +time;
+        /*get time*/
+        now[4] = (byte)(c.get(Calendar.HOUR_OF_DAY));             //get hour of day from calendar
+        now[5] = (byte)(c.get(Calendar.MINUTE));                   //get minute of hour from calendar
+
+
+        return now;
 
     }
 
