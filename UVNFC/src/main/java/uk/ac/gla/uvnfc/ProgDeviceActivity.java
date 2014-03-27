@@ -45,6 +45,8 @@ public class ProgDeviceActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prog_device_activity);
 
+        //added RL 27th PM
+        mAdapter = NfcAdapter.getDefaultAdapter(this);
         Intent intent = getIntent();
 
         sensorid =  (EditText)findViewById(R.id.N_ET_SensorID_Program);
@@ -97,25 +99,28 @@ public class ProgDeviceActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        disableWriteMode();
 
-    //Program currently crashes on -- RL edit 27th: switched enableWrite function call to the last thing
+    }
+
+
+    //Program currently crashes on
     public void onClick (View v){
         if (v.getId()==R.id.B_Send){
 
-             //Grab data from EditTexts
-             sensString = sensorid.getText().toString();
-             measString = measint.getText().toString();
-            
-             //Tell user to scan tag
-             displayMessage("Touch phone to device to begin write operation ***dev:" + sensString + measString );
-            
+            //Grab data from EditTexts
+            sensString = sensorid.getText().toString();
+            measString = measint.getText().toString();
+
+            //Tell user to scan tag
+            displayMessage("Touch phone to device to begin write operation ***dev"+sensString+measString);
+
             //enable NFC
 
             enableWriteMode();
-
-            
-
-
         }
 
 
@@ -163,13 +168,21 @@ public class ProgDeviceActivity extends ActionBarActivity {
 
     /**Format tag and write NDEF message*/
     private boolean writeTag(Tag tag, String sensor, String measint) {
+
+        int x;
+
         // make application record
         NdefRecord appRecord = NdefRecord.createApplicationRecord("uk.ac.gla.uvnfc");
-        //Added dev Toast RL 27th
-        Toast.makeText(MainActivity.this, "***dev entered writeTag function", Toast.LENGTH_LONG).show();
+
+        //Added for debugging
+
+        displayMessage("***Dev: Entered writeTag function");
         String now = get_time_date();                 //get the current time and date
         String mess = "" + sensor + now + measint;    //build message
         byte[] payload = mess.getBytes();
+        for(x=0;x<payload.length; x++){
+            payload[x]-=30;
+        }
         byte[] mimeBytes = MimeType.NFC_DEMO.getBytes(Charset.forName("US-ASCII"));
         NdefRecord cardRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, mimeBytes,
                 new byte[0], payload);
