@@ -63,21 +63,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="QueryActivity" />
         </activity>
+
+
         <activity
             android:name="uk.ac.gla.uvnfc.NFC_Activity"
             android:label="@string/title_activity_nfc_" >
+
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <data android:mimeType="application/uk.ac.gla.uvnfc"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
     </application>
 
-
-    <!-- !!!!!!!!!!!!!!!!PLACEHOLDER FOR NFC ACTIVITY!!!!!!!!!!!!!!!!!!!!!!
-
-
-     Handles the intent created by an NFC device in proximity, and filters for our MIME type
-    <intent-filter>
-        <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-        <data android:mimeType="application/uk.ac.gla.uvnfc"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-    </intent-filter>
-    !-->
 </manifest>

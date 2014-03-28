@@ -39,11 +39,25 @@ public class NFC_Activity extends ActionBarActivity{
             Parcelable[] rawMsgs = getIntent().getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage msg = (NdefMessage) rawMsgs[0];
             NdefRecord deviceRecord = msg.getRecords()[0];
-            String NDEFMSG = new String(deviceRecord.getPayload());
+            byte[] NDEFMSG=(deviceRecord.getPayload());
 
-            NFCstatus.setText("Tag has been read! \n\t");
-            NFCdisp.setText(NDEFMSG);
+            NFCstatus.setText("DEV *** Tag has been read! \n\t");
 
+            //convert 3 bytes of mem pointer to an int
+
+            int mescount=NDEFMSG[9];
+            mescount+=(NDEFMSG[8]<<8);
+            mescount+=((NDEFMSG[7]&0x01)<<16);
+
+            int x, year, day, month;
+            String[][] data = new String[1500][5]
+            for(x=0; x<mescount; x++){
+                data[x][0]=Byte.toString(NDEFMSG[0]);
+                year = NDEFMSG[1]+2000;
+                
+
+
+            }
 
         }
         /*These were used for sending messages across activities, not useful here*/

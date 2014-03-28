@@ -69,8 +69,12 @@ public class QueryActivity extends ActionBarActivity {
     }
 
     public void onClick(View v){
-        if(v.getId()==R.id.B_SendQuery){
 
+        //also add QR code button handeler
+
+        if(v.getId()==R.id.B_SendQuery){
+            //setup url for query
+            //call result activity (pass url)
         }
 
 
