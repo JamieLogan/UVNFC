@@ -21,6 +21,13 @@ public class DBResultActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        //exacute query
+        //get result
+        //parse data from result
+        //plot and display graph
+
+
     }
 
 

@@ -54,7 +54,8 @@ public class NFC_Activity extends ActionBarActivity{
             for(x=0; x<mescount; x++){
                 data[x][0]=Byte.toString(NDEFMSG[0]);
                 year = NDEFMSG[1]+2000;
-                
+
+
 
 
             }
