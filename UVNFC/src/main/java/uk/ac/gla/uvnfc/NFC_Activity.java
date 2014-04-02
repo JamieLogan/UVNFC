@@ -70,6 +70,10 @@ public class NFC_Activity extends ActionBarActivity{
                 data[x][4]=""+NDEFMSG[11+(x*2)];
             }
 
+            for(x=0; x<mescount; x++){
+                new PHPAddClass().execute(data[x][0], data[x][1], data[x][2], data[x][3], data[x][4]);
+            }
+
 
 
 
