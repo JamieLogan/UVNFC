@@ -149,10 +149,20 @@ public class ProgDeviceActivity extends ActionBarActivity {
             }
         }
 
+
+        /* onClick handler for scanning qr code
+        *
+        *
+        *
+         */
         if(v.getId()==R.id.B_ScanQR_Prog){
-            Intent AAAA = new Intent(this, QrProgClass.class);
-            this.startActivity(AAAA);
+            Intent intent = new Intent(this, QrProgClass.class);
+            this.startActivity(intent);
         }
+
+        /**
+         * end of onClick handler
+         */
 
 
 

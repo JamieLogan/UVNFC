@@ -45,7 +45,7 @@ public class QrProgClass extends Activity implements ZBarScannerView.ResultHandl
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
-        Intent intent = new Intent(this, ProgDeviceActivity.class);
+        Intent intent = new Intent(this, ProgDeviceActivity.class); //call ProgDeviceActivity and pass the qr result back in the intent
         String res = rawResult.getContents();
         intent.putExtra(RESQR, res);
         startActivity(intent);
