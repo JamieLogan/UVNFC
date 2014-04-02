@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc" android:required="true" />
 
+    <!--Camera Hardware Permission -->
+    <uses-feature android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -40,6 +43,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MenuActivity" />
+
+
+
         </activity>
 
 
@@ -75,6 +81,14 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <!-- *****************QR prog activity*********************-->
+        <activity
+            android:name=".QrProgClass"
+            android:theme="@style/AppOverlayTheme">
+
+        </activity>
+
     </application>
 
 </manifest>

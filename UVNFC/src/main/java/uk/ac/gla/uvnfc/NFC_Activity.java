@@ -45,7 +45,7 @@ public class NFC_Activity extends ActionBarActivity{
 
             //convert 3 bytes of mem pointer to an int
 
-            int mescount=NDEFMSG[9];
+            /*int mescount=NDEFMSG[9];
             mescount+=(NDEFMSG[8]<<8);
             mescount+=((NDEFMSG[7]&0x01)<<16);
 
@@ -58,7 +58,7 @@ public class NFC_Activity extends ActionBarActivity{
 
 
 
-            }
+            }*/
 
         }
         /*These were used for sending messages across activities, not useful here*/

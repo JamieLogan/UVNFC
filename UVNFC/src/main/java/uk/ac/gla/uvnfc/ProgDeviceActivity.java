@@ -32,7 +32,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
      * declaring UI elements
      */
     public EditText sensorid, measint;
-    public Button send;
+    public Button send, QRbut;
     public TextView nfcstatus;
     public String sensString, measString;
     public int sensInt=0;
@@ -43,6 +43,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
      */
     private NfcAdapter mAdapter; //reference to NFC adaptor for future use
     private  boolean mInWriteMode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class ProgDeviceActivity extends ActionBarActivity {
         sensorid =  (EditText)findViewById(R.id.N_ET_SensorID_Program);
         measint = (EditText)findViewById(R.id.N_ET_MeasInt);
         send = (Button)findViewById(R.id.B_Send);
+        QRbut = (Button)findViewById(R.id.B_ScanQR_Prog);
         nfcstatus = (TextView)findViewById((R.id.TV_NFCStatus));
 
 
@@ -64,6 +66,10 @@ public class ProgDeviceActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        Intent intent2 = getIntent();
+        String message = intent2.getStringExtra(QrProgClass.RESQR);
+        sensorid.setText(message);
     }
 
 
@@ -139,9 +145,15 @@ public class ProgDeviceActivity extends ActionBarActivity {
                     enableWriteMode();
                 }
             }else{
-                displayMessage("Please make sure you have entered sensor ID and measurment interval");
+                displayMessage("Please make sure you have entered sensor ID and measurement interval");
             }
         }
+
+        if(v.getId()==R.id.B_ScanQR_Prog){
+            Intent AAAA = new Intent(this, QrProgClass.class);
+            this.startActivity(AAAA);
+        }
+
 
 
     }

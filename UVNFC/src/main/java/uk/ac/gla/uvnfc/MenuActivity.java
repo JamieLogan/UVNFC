@@ -93,7 +93,11 @@ public class MenuActivity extends ActionBarActivity {
             Intent intent = new Intent(this, QueryActivity.class);      //Create an intent calling for that activity
             startActivity(intent);                                      //start an instance of it
         }
-        /*openCV is a dummy button FFD*/
+        if (v.getId()==R.id.B_OpenCV){
+
+           /*openCV is a dummy button FFD*/
+
+        }
     }
 
     public String fStringToHex(String str){
