@@ -125,4 +125,3 @@ public class NFC_Activity extends ActionBarActivity{
         }
     }
     */
-}
