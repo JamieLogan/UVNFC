@@ -21,7 +21,7 @@ public class QrProgClass extends Activity implements ZBarScannerView.ResultHandl
     public void onCreate(Bundle state) {
 
         super.onCreate(state);
-        mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
+        mScannerView = new ZBarScannerView(QrProgClass.this);    // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
 
 
@@ -32,7 +32,7 @@ public class QrProgClass extends Activity implements ZBarScannerView.ResultHandl
     @Override
     public void onResume() {
         super.onResume();
-        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.setResultHandler(QrProgClass.this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
     }
 

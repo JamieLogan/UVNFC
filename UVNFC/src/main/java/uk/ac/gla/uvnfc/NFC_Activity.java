@@ -9,6 +9,8 @@ import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class NFC_Activity extends ActionBarActivity{
 
     private TextView NFCdisp, NFCstatus;
@@ -45,20 +47,35 @@ public class NFC_Activity extends ActionBarActivity{
 
             //convert 3 bytes of mem pointer to an int
 
-            /*int mescount=NDEFMSG[9];
+            int mescount=NDEFMSG[9];
             mescount+=(NDEFMSG[8]<<8);
             mescount+=((NDEFMSG[7]&0x01)<<16);
+            int DofY=NDEFMSG[3];
+            DofY+=((NDEFMSG[2]&0x03)<<8);
+            Calendar mestime = Calendar.getInstance();
+            mestime.set(Calendar.YEAR, (NDEFMSG[1]+2000));
+            mestime.set(Calendar.DAY_OF_YEAR, DofY);
+            mestime.set(Calendar.HOUR_OF_DAY, ((int) NDEFMSG[4]));
+            mestime.set(Calendar.MINUTE, ((int) NDEFMSG[5]));
 
-            int x, year, day, month;
-            String[][] data = new String[1500][5]
+            int mesint= NDEFMSG[6];
+            int x;
+            String[][] data = new String[mescount][5];
             for(x=0; x<mescount; x++){
                 data[x][0]=Byte.toString(NDEFMSG[0]);
-                year = NDEFMSG[1]+2000;
+                mestime.add(Calendar.MINUTE, (mesint*x));
+                data[x][1]=""+mestime.get(Calendar.YEAR)+"-"+mestime.get(Calendar.MONTH)+"-"+mestime.get(Calendar.DAY_OF_MONTH);
+                data[x][2]=""+mestime.get(Calendar.HOUR_OF_DAY)+":"+mestime.get(Calendar.MINUTE);
+                data[x][3]=""+NDEFMSG[10+(x*2)];
+                data[x][4]=""+NDEFMSG[11+(x*2)];
+            }
 
 
 
 
-            }*/
+
+
+            }
 
         }
         /*These were used for sending messages across activities, not useful here*/
