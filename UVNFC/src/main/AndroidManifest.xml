@@ -17,6 +17,10 @@
     <!--Camera Hardware Permission -->
     <uses-feature android:name="android.permission.CAMERA"/>
 
+    <!--Internet Camera Permission-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
