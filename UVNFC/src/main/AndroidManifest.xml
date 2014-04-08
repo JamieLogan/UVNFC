@@ -4,7 +4,6 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <!--My code uses minSdk 14 and target 14, RL, Wed -->
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
@@ -30,7 +29,9 @@
         <!-- *****************MENU ACTIVITY*********************-->
         <activity
             android:name="uk.ac.gla.uvnfc.MenuActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +44,9 @@
         <activity
             android:name="uk.ac.gla.uvnfc.ProgDeviceActivity"
             android:label="@string/title_activity_prog_device"
-            android:parentActivityName="MenuActivity" >
+            android:parentActivityName="MenuActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MenuActivity" />
@@ -57,7 +60,9 @@
         <activity
             android:name="uk.ac.gla.uvnfc.QueryActivity"
             android:label="@string/title_activity_query"
-            android:parentActivityName="MenuActivity" >
+            android:parentActivityName="MenuActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MenuActivity" />
@@ -68,7 +73,9 @@
         <activity
             android:name="uk.ac.gla.uvnfc.DBResultActivity"
             android:label="@string/title_activity_dbresult"
-            android:parentActivityName="QueryActivity" >
+            android:parentActivityName="QueryActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="QueryActivity" />
@@ -89,7 +96,9 @@
         <!-- *****************QR prog activity*********************-->
         <activity
             android:name=".QrProgClass"
-            android:theme="@style/AppOverlayTheme">
+            android:theme="@style/AppOverlayTheme"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation">
 
         </activity>
         

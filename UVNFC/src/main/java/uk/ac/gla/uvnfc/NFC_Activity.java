@@ -46,9 +46,10 @@ public class NFC_Activity extends ActionBarActivity{
 
             //convert 3 bytes of mem pointer to an int
 
-            int mescount=NDEFMSG[9];
-            mescount+=(NDEFMSG[8]<<8);
-            mescount+=((NDEFMSG[7]&0x01)<<16);
+            int mescount=(NDEFMSG[9]&0xFF);
+            mescount+=((NDEFMSG[8]&0xFF)<<8);
+            mescount+=(((NDEFMSG[7]&0xFF)&0x01)<<16);
+            mescount=mescount/2;
             int DofY=(NDEFMSG[3]&0xFF);
             DofY+=(((NDEFMSG[2]&0xFF)&0x03)<<8);
             Calendar mestime = Calendar.getInstance();
@@ -65,14 +66,14 @@ public class NFC_Activity extends ActionBarActivity{
                 data[x][0]=Byte.toString(NDEFMSG[0]);
                 data[x][1]=""+mestime.get(Calendar.YEAR)+"-"+(mestime.get(Calendar.MONTH)+1)+"-"+mestime.get(Calendar.DAY_OF_MONTH);
                 data[x][2]=""+mestime.get(Calendar.HOUR_OF_DAY)+":"+mestime.get(Calendar.MINUTE);
-                data[x][3]=""+NDEFMSG[10+(x*2)];
-                data[x][4]=""+NDEFMSG[11+(x*2)];
+                data[x][3]=""+(NDEFMSG[10+(x*2)]&0xFF);
+                data[x][4]=""+(NDEFMSG[11+(x*2)]&0xFF);
                 mestime.add(Calendar.MINUTE, (mesint));
             }
 
             for(x=0; x<mescount; x++){
-                NFCdisp.append("ID:"+data[x][0]+ ",\tDate:" + data[x][1] +
-                        ",\tTime:" + data[x][2] + ",\tUV:" + data[x][3] + ",Amb:" + data[x][4] + "\n");
+               // NFCdisp.append("ID:"+data[x][0]+ ",\tDate:" + data[x][1] +
+                 //       ",\tTime:" + data[x][2] + ",\tUV:" + data[x][3] + ",Amb:" + data[x][4] + "\n");
                 new PHPAddClass().execute(data[x][0], data[x][1], data[x][2], data[x][3], data[x][4]);
             }
 
